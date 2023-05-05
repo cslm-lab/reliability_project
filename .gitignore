@@ -3,6 +3,9 @@
 ./balance_stimuli/colored_PNG/
 balance_stimuli/2022_01_14_balance_stimuli.RData
 balance_stimuli/colored_PNG/
+analysis_scripts/reliability_analyses_cache/
+
+.DS_Store
 
 # History files
 .Rhistory

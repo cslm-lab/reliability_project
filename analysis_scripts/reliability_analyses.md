@@ -1,7 +1,7 @@
 ---
 title: "Reliability Analyses"
 author: "Pam Fuhrmeister"
-date: "2023-05-05"
+date: "2023-05-15"
 output:
   html_document:
     keep_md: yes
@@ -90,7 +90,7 @@ fit_e1_s1_split %>%
 
 | cor_Participant_ID__TrialTypeeven__TrialTypeodd|    .lower|    .upper| .width|.point |.interval |
 |-----------------------------------------------:|---------:|---------:|------:|:------|:---------|
-|                                       0.9914653| 0.9795127| 0.9999227|   0.95|mean   |hdi       |
+|                                       0.9916853| 0.9799526| 0.9996665|   0.95|mean   |hdi       |
 
 </div>
 
@@ -203,7 +203,7 @@ fit_e1_s2_split %>%
 
 | cor_Participant_ID__TrialTypeeven__TrialTypeodd|    .lower|    .upper| .width|.point |.interval |
 |-----------------------------------------------:|---------:|---------:|------:|:------|:---------|
-|                                       0.9864868| 0.9700289| 0.9992144|   0.95|mean   |hdi       |
+|                                       0.9865317| 0.9702279| 0.9996657|   0.95|mean   |hdi       |
 
 </div>
 
@@ -296,7 +296,7 @@ fit_e1_t_rt %>%
 
 | cor_Participant_ID__Session1__Session2|    .lower|    .upper| .width|.point |.interval |
 |--------------------------------------:|---------:|---------:|------:|:------|:---------|
-|                               0.768829| 0.6431497| 0.8782983|   0.95|mean   |hdi       |
+|                              0.7706231| 0.6448927| 0.8799241|   0.95|mean   |hdi       |
 
 </div>
 
@@ -419,7 +419,7 @@ In Experiment 2, participants completed a simple picture-naming task (i.e., they
 
 ## Split-half reliability in the non-speeded condition
 
-Read in files for the non-speeded condition filter for correct responses only:
+Read in files for the non-speeded condition filter for correct responses only and for participants who got at least 60% accuracy on the task:
 
 
 ```r
@@ -452,7 +452,7 @@ df_e2_ns <- df_e2_ns %>%
     mutate(TrialType = ifelse(Trial_Nbr%%2 == 0, "even", "odd"))
 ```
 
-### Fit model to test split-half reliability in Session 1
+### Fit model to test split-half reliability in the non-speeded condition
 
 
 ```r
@@ -472,9 +472,9 @@ fit_e2_ns_split %>%
 
 <div class="kable-table">
 
-| cor_Participant_ID__TrialTypeeven__TrialTypeodd|   .lower|    .upper| .width|.point |.interval |
-|-----------------------------------------------:|--------:|---------:|------:|:------|:---------|
-|                                       0.9859038| 0.966139| 0.9998937|   0.95|mean   |hdi       |
+| cor_Participant_ID__TrialTypeeven__TrialTypeodd|    .lower|    .upper| .width|.point |.interval |
+|-----------------------------------------------:|---------:|---------:|------:|:------|:---------|
+|                                       0.9897336| 0.9749721| 0.9998808|   0.95|mean   |hdi       |
 
 </div>
 
@@ -516,13 +516,13 @@ cor.test(df_e2_ns_sum_wide$even, df_e2_ns_sum_wide$odd)
 	Pearson's product-moment correlation
 
 data:  df_e2_ns_sum_wide$even and df_e2_ns_sum_wide$odd
-t = 20.731, df = 44, p-value < 2.2e-16
+t = 22.112, df = 47, p-value < 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.9151734 0.9735549
+ 0.9214332 0.9745857
 sample estimates:
       cor 
-0.9524351 
+0.9551474 
 ```
 
 #### Plot raw data
@@ -537,7 +537,7 @@ ggplot(df_e2_ns_sum_wide, aes(x = even, y = odd)) + geom_point() + geom_smooth(m
 
 ## Split-half reliability in the speeded condition
 
-Read in files for the speeded condition filter for correct responses only:
+Read in files for the speeded condition filter for correct responses only and for participants who got at least 60% accuracy on the task:
 
 
 ```r
@@ -545,13 +545,21 @@ Read in files for the speeded condition filter for correct responses only:
 test_4 <- read.csv("../data/Experiment2/Exp2_Session1_ListA_S/results_5f31a.csv")
 colclasses <- sapply(test_4, typeof)
 
-file_names_1_a_s <- list.files(path = "../data/Experiment2/Exp2_Session1_ListA_S/", pattern = "*.csv", full.names = TRUE)
+file_names_1_a_s <- list.files(path = "../data/Experiment2/Exp2_Session1_ListA_S/", 
+                         pattern = "*.csv", 
+                         full.names = TRUE)
 
-file_names_1_b_s <- list.files(path = "../data/Experiment2/Exp2_Session1_ListB_S/", pattern = "*.csv", full.names = TRUE)
+file_names_1_b_s <- list.files(path = "../data/Experiment2/Exp2_Session1_ListB_S/", 
+                         pattern = "*.csv", 
+                         full.names = TRUE)
 
-file_names_2_a_s <- list.files(path = "../data/Experiment2/Exp2_Session2_ListA_S/", pattern = "*.csv", full.names = TRUE)
+file_names_2_a_s <- list.files(path = "../data/Experiment2/Exp2_Session2_ListA_S/", 
+                         pattern = "*.csv", 
+                         full.names = TRUE)
 
-file_names_2_b_s <- list.files(path = "../data/Experiment2/Exp2_Session2_ListB_S/", pattern = "*.csv", full.names = TRUE)
+file_names_2_b_s <- list.files(path = "../data/Experiment2/Exp2_Session2_ListB_S/", 
+                         pattern = "*.csv", 
+                         full.names = TRUE)
 
 df_1as <- map_dfr(file_names_1_a_s, read.csv, colClasses = colclasses)
 df_1bs <- map_dfr(file_names_1_b_s, read.csv, colClasses = colclasses)
@@ -560,14 +568,15 @@ df_2bs <- map_dfr(file_names_2_b_s, read.csv, colClasses = colclasses)
 
 # Combine data frames into one big one and filter for correct responses only
 df_e2_s <- rbind(df_1as, df_1bs, df_2as, df_2bs) %>%
-    filter(Response_Trial == "correct") %>%
-    filter(RT > 0) %>%
-    filter(Participant_ID != "5fe39")  # had less than 60% accuracy
+  filter(Response_Trial == "correct") %>%
+  filter(RT > 0) %>%
+  filter(Participant_ID != "5fe39") %>% # had less than 60% accuracy
+  filter(Participant_ID != "6154b") # data didn't get saved--technical error
 
 # Create a column for even/odd trials
 df_e2_s <- df_e2_s %>%
-    group_by(Participant_ID) %>%
-    mutate(TrialType = ifelse(Trial_Nbr%%2 == 0, "even", "odd"))
+  group_by(Participant_ID) %>%
+  mutate(TrialType = ifelse(Trial_Nbr %% 2 == 0, "even", "odd"))
 ```
 
 ### Fit model to test split-half reliability in Session 1
@@ -592,7 +601,7 @@ fit_e2_s_split %>%
 
 | cor_Participant_ID__TrialTypeeven__TrialTypeodd|    .lower|    .upper| .width|.point |.interval |
 |-----------------------------------------------:|---------:|---------:|------:|:------|:---------|
-|                                       0.9895268| 0.9746436| 0.9997011|   0.95|mean   |hdi       |
+|                                       0.9908821| 0.9781873| 0.9996719|   0.95|mean   |hdi       |
 
 </div>
 
@@ -634,13 +643,13 @@ cor.test(df_e2_s_sum_wide$even, df_e2_s_sum_wide$odd)
 	Pearson's product-moment correlation
 
 data:  df_e2_s_sum_wide$even and df_e2_s_sum_wide$odd
-t = 25.635, df = 45, p-value < 2.2e-16
+t = 25.945, df = 47, p-value < 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.9419417 0.9818281
+ 0.9416110 0.9812459
 sample estimates:
       cor 
-0.9674254 
+0.9668161 
 ```
 
 #### Plot raw data
@@ -653,7 +662,7 @@ ggplot(df_e2_s_sum_wide, aes(x = even, y = odd)) + geom_point() + geom_smooth(me
 
 ![](reliability_analyses_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
 
-## Test-retest reliability
+## Correlation between conditions (speeded and non-speeded)
 
 
 ```r
@@ -688,11 +697,11 @@ fit_e2_s_ns %>%
 
 | cor_Participant_ID__Type_Trialnonspeeded__Type_Trialspeeded|    .lower|    .upper| .width|.point |.interval |
 |-----------------------------------------------------------:|---------:|---------:|------:|:------|:---------|
-|                                                   0.6917011| 0.5246909| 0.8478187|   0.95|mean   |hdi       |
+|                                                   0.7024358| 0.5489418| 0.8480443|   0.95|mean   |hdi       |
 
 </div>
 
-### Plot density of split-half reliability estimate
+### Plot density of estimate
 
 
 ```r
@@ -730,13 +739,13 @@ cor.test(df_sum_wide_e2$nonspeeded, df_sum_wide_e2$speeded)
 	Pearson's product-moment correlation
 
 data:  df_sum_wide_e2$nonspeeded and df_sum_wide_e2$speeded
-t = 5.7995, df = 44, p-value = 6.646e-07
+t = 6.1396, df = 47, p-value = 1.654e-07
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.4548172 0.7963449
+ 0.4750547 0.7985292
 sample estimates:
       cor 
-0.6582101 
+0.6671331 
 ```
 
 #### Plot raw data
@@ -745,14 +754,6 @@ sample estimates:
 ```r
 ggplot(df_sum_wide_e2, aes(x = nonspeeded, y = speeded)) + geom_point() + geom_smooth(method = "lm") + labs(x = "Response time non-speeded condition",
     y = "Response time speeded condition")
-```
-
-```
-Warning: Removed 1 rows containing non-finite values (stat_smooth).
-```
-
-```
-Warning: Removed 1 rows containing missing values (geom_point).
 ```
 
 ![](reliability_analyses_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
@@ -873,9 +874,9 @@ bayestestR::describe_posterior(corr_ns, centrality = "mean")
 
 <div class="kable-table">
 
-|Parameter |       Mean|   CI|     CI_low|   CI_high|    pd| ROPE_CI| ROPE_low| ROPE_high| ROPE_Percentage|     log_BF|        BF|Prior_Distribution | Prior_Location| Prior_Scale|
-|:---------|----------:|----:|----------:|---------:|-----:|-------:|--------:|---------:|---------------:|----------:|---------:|:------------------|--------------:|-----------:|
-|rho       | -0.2038227| 0.95| -0.4665634| 0.0700407| 0.932|    0.95|    -0.05|      0.05|       0.1034211| -0.0002743| 0.9997257|beta               |              3|           3|
+|Parameter |       Mean|   CI|     CI_low|   CI_high|    pd| ROPE_CI| ROPE_low| ROPE_high| ROPE_Percentage|     log_BF|       BF|Prior_Distribution | Prior_Location| Prior_Scale|
+|:---------|----------:|----:|----------:|---------:|-----:|-------:|--------:|---------:|---------------:|----------:|--------:|:------------------|--------------:|-----------:|
+|rho       | -0.1971857| 0.95| -0.4522139| 0.0586654| 0.932|    0.95|    -0.05|      0.05|       0.1049724| -0.0643657| 0.937662|beta               |              3|           3|
 
 </div>
 
@@ -888,13 +889,13 @@ cor.test(acc_rt$rt_ns, acc_rt$acc_ns)
 	Pearson's product-moment correlation
 
 data:  acc_rt$rt_ns and acc_rt$acc_ns
-t = -1.5995, df = 43, p-value = 0.117
+t = -1.5707, df = 47, p-value = 0.123
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.49600019  0.06079576
+ -0.47470537  0.06175606
 sample estimates:
-      cor 
--0.236967 
+       cor 
+-0.2233186 
 ```
 
 ```r
@@ -904,9 +905,9 @@ bayestestR::describe_posterior(corr_s, centrality = "mean")
 
 <div class="kable-table">
 
-|Parameter |       Mean|   CI|     CI_low|   CI_high|      pd| ROPE_CI| ROPE_low| ROPE_high| ROPE_Percentage|   log_BF|       BF|Prior_Distribution | Prior_Location| Prior_Scale|
-|:---------|----------:|----:|----------:|---------:|-------:|-------:|--------:|---------:|---------------:|--------:|--------:|:------------------|--------------:|-----------:|
-|rho       | -0.2404523| 0.95| -0.4895897| 0.0427807| 0.95325|    0.95|    -0.05|      0.05|       0.0628947| 0.501144| 1.650608|beta               |              3|           3|
+|Parameter |       Mean|   CI|     CI_low|   CI_high|      pd| ROPE_CI| ROPE_low| ROPE_high| ROPE_Percentage|    log_BF|       BF|Prior_Distribution | Prior_Location| Prior_Scale|
+|:---------|----------:|----:|----------:|---------:|-------:|-------:|--------:|---------:|---------------:|---------:|--------:|:------------------|--------------:|-----------:|
+|rho       | -0.2184115| 0.95| -0.4593992| 0.0469457| 0.95075|    0.95|    -0.05|      0.05|       0.0743758| 0.1978395| 1.218767|beta               |              3|           3|
 
 </div>
 
@@ -919,13 +920,13 @@ cor.test(acc_rt$rt_s, acc_rt$acc_s)
 	Pearson's product-moment correlation
 
 data:  acc_rt$rt_s and acc_rt$acc_s
-t = -1.9441, df = 43, p-value = 0.05845
+t = -1.758, df = 47, p-value = 0.08525
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.53327950  0.01014087
+ -0.49501829  0.03526147
 sample estimates:
        cor 
--0.2842391 
+-0.2483981 
 ```
 
 

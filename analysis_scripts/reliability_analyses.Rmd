@@ -433,7 +433,7 @@ df_e2_ns <- df_e2_ns %>%
 
 ```
 
-### Fit model to test split-half reliability in Session 1
+### Fit model to test split-half reliability in the non-speeded condition
 
 ```{r, tidy=TRUE, message=FALSE, comment="", cache=TRUE, results='hide'}
 
@@ -547,7 +547,8 @@ df_2bs <- map_dfr(file_names_2_b_s, read.csv, colClasses = colclasses)
 df_e2_s <- rbind(df_1as, df_1bs, df_2as, df_2bs) %>%
   filter(Response_Trial == "correct") %>%
   filter(RT > 0) %>%
-  filter(Participant_ID != "5fe39") # had less than 60% accuracy
+  filter(Participant_ID != "5fe39") %>% # had less than 60% accuracy
+  filter(Participant_ID != "6154b") # data didn't get saved--technical error
 
 # Create a column for even/odd trials
 df_e2_s <- df_e2_s %>%

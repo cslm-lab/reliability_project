@@ -46,7 +46,7 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial045_ankle.wav,1,b,naming,45,ankle,1517,correct,NA,May  6 2023 19:42:57,Doris,1
 62e25,62e25_session1_listb_naming_trial046_airport.wav,1,b,naming,46,airport,1570,correct,NA,May  6 2023 19:43:17,Doris,1
 62e25,62e25_session1_listb_naming_trial047_asparagus.wav,1,b,naming,47,asparagus,1450,correct,NA,May  6 2023 19:43:45,Doris,1
-62e25,62e25_session1_listb_naming_trial048_egg.wav,1,b,naming,48,egg,1291,uncertain,"utters the correct word, however, it is followed by another word",May  6 2023 19:48:37,Doris,1
+62e25,62e25_session1_listb_naming_trial048_egg.wav,1,b,naming,48,egg,1291,uncertain,utters the correct word however it is followed by another word,May  6 2023 19:48:37,Doris,1
 62e25,62e25_session1_listb_naming_trial049_dentist.wav,1,b,naming,49,dentist,1819,correct,NA,May  6 2023 19:51:08,Doris,1
 62e25,62e25_session1_listb_naming_trial050_shadow.wav,1,b,naming,50,shadow,1644,correct,NA,May  6 2023 19:54:19,Doris,1
 62e25,62e25_session1_listb_naming_trial051_balloon.wav,1,b,naming,51,balloon,868,correct,NA,May  6 2023 19:54:47,Doris,1
@@ -56,7 +56,7 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial055_waiter.wav,1,b,naming,55,waiter,981,correct,NA,May  6 2023 19:59:16,Doris,1
 62e25,62e25_session1_listb_naming_trial056_condom.wav,1,b,naming,56,condom,-1,no_resp,NA,May  6 2023 19:59:29,Doris,1
 62e25,62e25_session1_listb_naming_trial057_cowboy.wav,1,b,naming,57,cowboy,884,correct,NA,May  6 2023 19:59:44,Doris,1
-62e25,62e25_session1_listb_naming_trial058_thermometer.wav,1,b,naming,58,thermometer,-1,wrong_word,"thermostat",May  6 2023 19:59:56,Doris,1
+62e25,62e25_session1_listb_naming_trial058_thermometer.wav,1,b,naming,58,thermometer,-1,wrong_word,thermostat,May  6 2023 19:59:56,Doris,1
 62e25,62e25_session1_listb_naming_trial059_torch.wav,1,b,naming,59,torch,1003,correct,NA,May  6 2023 20:00:26,Doris,1
 62e25,62e25_session1_listb_naming_trial060_sink.wav,1,b,naming,60,sink,832,correct,NA,May  6 2023 20:00:40,Doris,1
 62e25,62e25_session1_listb_naming_trial061_spider.wav,1,b,naming,61,spider,924,correct,NA,May  6 2023 20:01:12,Doris,1
@@ -69,17 +69,17 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial068_pizza.wav,1,b,naming,68,pizza,782,correct,NA,May  6 2023 20:04:53,Doris,1
 62e25,62e25_session1_listb_naming_trial069_skateboard.wav,1,b,naming,69,skateboard,1000,correct,NA,May  6 2023 20:05:21,Doris,1
 62e25,62e25_session1_listb_naming_trial070_maze.wav,1,b,naming,70,maze,1234,correct,NA,May  6 2023 20:05:50,Doris,1
-62e25,62e25_session1_listb_naming_trial071_finger.wav,1,b,naming,71,finger,-1,uncertain,"response "finger, index finger"",May  6 2023 20:06:10,Doris,1
+62e25,62e25_session1_listb_naming_trial071_finger.wav,1,b,naming,71,finger,-1,uncertain,response finger  index finger,May  6 2023 20:06:10,Doris,1
 62e25,62e25_session1_listb_naming_trial072_bible.wav,1,b,naming,72,bible,1096,correct,NA,May  6 2023 20:07:37,Doris,1
 62e25,62e25_session1_listb_naming_trial073_trumpet.wav,1,b,naming,73,trumpet,1871,correct,NA,May  6 2023 20:08:20,Doris,1
 62e25,62e25_session1_listb_naming_trial074_apron.wav,1,b,naming,74,apron,1741,correct,NA,May  6 2023 20:08:42,Doris,1
 62e25,62e25_session1_listb_naming_trial075_bat.wav,1,b,naming,75,bat,983,correct,NA,May  6 2023 20:09:00,Doris,1
 62e25,62e25_session1_listb_naming_trial076_broccoli.wav,1,b,naming,76,broccoli,837,correct,NA,May  6 2023 20:09:21,Doris,1
 62e25,62e25_session1_listb_naming_trial077_camera.wav,1,b,naming,77,camera,911,correct,NA,May  6 2023 20:09:46,Doris,1
-62e25,62e25_session1_listb_naming_trial078_lizard.wav,1,b,naming,78,lizard,-1,wrong_word,"salamander",May  6 2023 20:09:59,Doris,1
-62e25,62e25_session1_listb_naming_trial079_heart.wav,1,b,naming,79,heart,-1,wrong_word,"love heart",May  6 2023 20:10:12,Doris,1
+62e25,62e25_session1_listb_naming_trial078_lizard.wav,1,b,naming,78,lizard,-1,wrong_word,salamander,May  6 2023 20:09:59,Doris,1
+62e25,62e25_session1_listb_naming_trial079_heart.wav,1,b,naming,79,heart,-1,wrong_word,love heart,May  6 2023 20:10:12,Doris,1
 62e25,62e25_session1_listb_naming_trial080_glasses.wav,1,b,naming,80,glasses,818,correct,NA,May  6 2023 20:10:37,Doris,1
-62e25,62e25_session1_listb_naming_trial081_handle.wav,1,b,naming,81,handle,-1,wrong_word,"hand handle",May  6 2023 20:10:53,Doris,1
+62e25,62e25_session1_listb_naming_trial081_handle.wav,1,b,naming,81,handle,-1,wrong_word,hand handle,May  6 2023 20:10:53,Doris,1
 62e25,62e25_session1_listb_naming_trial082_lemon.wav,1,b,naming,82,lemon,957,correct,NA,May  6 2023 20:11:08,Doris,1
 62e25,62e25_session1_listb_naming_trial083_skull.wav,1,b,naming,83,skull,912,correct,NA,May  6 2023 20:11:39,Doris,1
 62e25,62e25_session1_listb_naming_trial084_foot.wav,1,b,naming,84,foot,792,correct,NA,May  6 2023 20:11:57,Doris,1
@@ -101,7 +101,7 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial100_ring.wav,1,b,naming,100,ring,919,correct,NA,May  6 2023 20:20:27,Doris,1
 62e25,62e25_session1_listb_naming_trial101_man.wav,1,b,naming,101,man,761,correct,NA,May  6 2023 20:20:47,Doris,1
 62e25,62e25_session1_listb_naming_trial102_giraffe.wav,1,b,naming,102,giraffe,942,correct,NA,May  6 2023 20:21:00,Doris,1
-62e25,62e25_session1_listb_naming_trial103_vein.wav,1,b,naming,103,vein,-1,wrong_word,"arm vein",May  6 2023 20:21:12,Doris,1
+62e25,62e25_session1_listb_naming_trial103_vein.wav,1,b,naming,103,vein,-1,wrong_word,arm vein,May  6 2023 20:21:12,Doris,1
 62e25,62e25_session1_listb_naming_trial104_dinosaur.wav,1,b,naming,104,dinosaur,1050,correct,NA,May  6 2023 20:21:35,Doris,1
 62e25,62e25_session1_listb_naming_trial105_iron.wav,1,b,naming,105,iron,963,correct,NA,May  6 2023 20:21:54,Doris,1
 62e25,62e25_session1_listb_naming_trial106_parrot.wav,1,b,naming,106,parrot,929,correct,NA,May  6 2023 20:22:17,Doris,1
@@ -116,20 +116,20 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial115_microphone.wav,1,b,naming,115,microphone,986,correct,NA,May  6 2023 20:26:21,Doris,1
 62e25,62e25_session1_listb_naming_trial116_fruit.wav,1,b,naming,116,fruit,921,correct,NA,May  6 2023 20:26:42,Doris,1
 62e25,62e25_session1_listb_naming_trial117_jar.wav,1,b,naming,117,jar,1051,correct,NA,May  6 2023 20:27:12,Doris,1
-62e25,62e25_session1_listb_naming_trial118_leaf.wav,1,b,naming,118,leaf,-1,wrong_word,"lettuce",May  6 2023 20:27:23,Doris,1
+62e25,62e25_session1_listb_naming_trial118_leaf.wav,1,b,naming,118,leaf,-1,wrong_word,lettuce,May  6 2023 20:27:23,Doris,1
 62e25,62e25_session1_listb_naming_trial119_sock.wav,1,b,naming,119,sock,725,correct,NA,May  6 2023 20:27:44,Doris,1
-62e25,62e25_session1_listb_naming_trial120_lab.wav,1,b,naming,120,lab,-1,wrong_word,"workspace",May  6 2023 20:27:58,Doris,1
+62e25,62e25_session1_listb_naming_trial120_lab.wav,1,b,naming,120,lab,-1,wrong_word,workspace,May  6 2023 20:27:58,Doris,1
 62e25,62e25_session1_listb_naming_trial121_tooth.wav,1,b,naming,121,tooth,1114,correct,NA,May  6 2023 20:28:14,Doris,1
 62e25,62e25_session1_listb_naming_trial122_wallet.wav,1,b,naming,122,wallet,814,correct,NA,May  6 2023 20:28:33,Doris,1
 62e25,62e25_session1_listb_naming_trial123_cigarette.wav,1,b,naming,123,cigarette,897,correct,NA,May  6 2023 20:28:51,Doris,1
 62e25,62e25_session1_listb_naming_trial124_printer.wav,1,b,naming,124,printer,1241,correct,NA,May  6 2023 20:29:30,Doris,1
 62e25,62e25_session1_listb_naming_trial125_mirror.wav,1,b,naming,125,mirror,803,correct,NA,May  6 2023 20:29:45,Doris,1
 62e25,62e25_session1_listb_naming_trial126_hair.wav,1,b,naming,126,hair,803,correct,NA,May  6 2023 20:30:00,Doris,1
-62e25,62e25_session1_listb_naming_trial127_television.wav,1,b,naming,127,television,-1,wrong_word,"old fashioned television",May  6 2023 20:30:17,Doris,1
+62e25,62e25_session1_listb_naming_trial127_television.wav,1,b,naming,127,television,-1,wrong_word,old fashioned television,May  6 2023 20:30:17,Doris,1
 62e25,62e25_session1_listb_naming_trial128_cloud.wav,1,b,naming,128,cloud,973,correct,NA,May  6 2023 20:30:32,Doris,1
 62e25,62e25_session1_listb_naming_trial129_witch.wav,1,b,naming,129,witch,940,correct,NA,May  6 2023 20:30:45,Doris,1
 62e25,62e25_session1_listb_naming_trial130_tank.wav,1,b,naming,130,tank,761,correct,NA,May  6 2023 20:31:01,Doris,1
-62e25,62e25_session1_listb_naming_trial131_glass.wav,1,b,naming,131,glass,-1,wrong_word,"empty glass",May  6 2023 20:31:11,Doris,1
+62e25,62e25_session1_listb_naming_trial131_glass.wav,1,b,naming,131,glass,-1,wrong_word,empty glass,May  6 2023 20:31:11,Doris,1
 62e25,62e25_session1_listb_naming_trial132_pirate.wav,1,b,naming,132,pirate,1075,correct,NA,May  6 2023 20:31:38,Doris,1
 62e25,62e25_session1_listb_naming_trial133_harp.wav,1,b,naming,133,harp,996,correct,NA,May  6 2023 20:32:10,Doris,1
 62e25,62e25_session1_listb_naming_trial134_dolphin.wav,1,b,naming,134,dolphin,1070,correct,NA,May  6 2023 20:32:26,Doris,1
@@ -143,7 +143,7 @@ Participant_ID,File_Name,Session,List,Type_Trial,Trial_Nbr,Target,RT,Response_Tr
 62e25,62e25_session1_listb_naming_trial142_umbrella.wav,1,b,naming,142,umbrella,788,correct,NA,May  6 2023 20:37:29,Doris,1
 62e25,62e25_session1_listb_naming_trial143_desert.wav,1,b,naming,143,desert,1294,correct,NA,May  6 2023 20:37:47,Doris,1
 62e25,62e25_session1_listb_naming_trial144_calculator.wav,1,b,naming,144,calculator,809,correct,NA,May  6 2023 20:38:01,Doris,1
-62e25,62e25_session1_listb_naming_trial145_coffee.wav,1,b,naming,145,coffee,-1,uncertain,"coffee and coffee beans",May  6 2023 20:38:20,Doris,1
+62e25,62e25_session1_listb_naming_trial145_coffee.wav,1,b,naming,145,coffee,-1,uncertain,coffee and coffee beans,May  6 2023 20:38:20,Doris,1
 62e25,62e25_session1_listb_naming_trial146_devil.wav,1,b,naming,146,devil,1106,correct,NA,May  6 2023 20:38:37,Doris,1
 62e25,62e25_session1_listb_naming_trial147_lion.wav,1,b,naming,147,lion,841,correct,NA,May  6 2023 20:38:55,Doris,1
 62e25,62e25_session1_listb_naming_trial148_scarecrow.wav,1,b,naming,148,scarecrow,1104,correct,NA,May  6 2023 20:39:27,Doris,1

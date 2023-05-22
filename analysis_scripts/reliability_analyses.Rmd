@@ -13,6 +13,8 @@ output:
 ---
 
 ```{r setup, tidy=TRUE, message=FALSE, comment=""}
+
+# load packages we need
 library(tidyverse)
 library(ggthemes)
 library(brms)
@@ -22,12 +24,19 @@ library(BayesFactor)
 library(ggExtra)
 library(cowplot)
 
+# set chunk options to show code in output (echo = TRUE)
 knitr::opts_chunk$set(echo = TRUE)
-options(width=120)
+
+# set the width of the code chunk
+options(width = 120)
+
+# set the default theme for plots and   
 theme_set(theme_few(base_size = 10))
 
 # Uses the computer cores available
 options(mc.cores = parallel::detectCores())
+
+# set number of total iterations, warm-up iterations, and chains for the Bayesian models
 iter <- 4000
 warmup <- 2000
 chains <- 4
@@ -43,24 +52,27 @@ In Experiment 1, participants completed a simple picture-naming task (i.e., they
 
 Read in files for Session 1, filter for correct responses only:
 
-```{r, tidy=TRUE, message=FALSE, comment=""}
+```{r exp1readdata, tidy=TRUE, message=FALSE, comment=""}
 
 # Read in one participant's data to assign column classes to big data frame
 test <- read.csv("../data/Experiment1/Session1_ListA/results_5cd49.csv")
 colclasses <- sapply(test, typeof)
 
+# make a list of files from session 1 list A
 file_names_a <- list.files(path = "../data/Experiment1/Session1_ListA/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# make a list of files from session 1 list B
 file_names_b <- list.files(path = "../data/Experiment1/Session1_ListB/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# Use map function to iterate over files in list and read them in and assign the correct class to all the columns
 df_a <- map_dfr(file_names_a, read.csv, colClasses = colclasses)
 df_b <- map_dfr(file_names_b, read.csv, colClasses = colclasses)
 
-# Combine data frames into one big one and filter for correct responses only
+# Combine data frames into one big one and filter for correct responses only and positive response times (these two should overlap because answers other than correct got a response time of -1 assigned to them but to be sure I included both)
 df <- rbind(df_a, df_b) %>%
   filter(Response_Trial == "correct") %>%
   filter(RT > 0)
@@ -76,6 +88,9 @@ df <- df %>%
 ### Fit model to test split-half reliability in Session 1
 
 ```{r, tidy=TRUE, message=FALSE, comment="", cache=TRUE, results='hide'}
+
+# fit Bayesian model predicting response times
+# we estimated intercepts for each trial type (even vs. odd) separately rather than an intercept and a slope so we can compute the correlation between response times in the two trial types in the random effects structure
 
 fit_e1_s1_split <- brm(RT ~ 0 + TrialType + (0 + TrialType|Participant_ID) + (1|Target),
               family = lognormal(),
@@ -129,14 +144,16 @@ Just in case we didn't have enough data to estimate the random effect correlatio
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# create a data frame that computes the mean response time for each participant in each trial type (even and odd trials)
 df_sum <- df %>%
   group_by(Participant_ID, TrialType) %>%
   summarize(RT_mean = mean(RT))
 
-
+# reshape the data frame into wide form
 df_sum_wide <- df_sum %>% 
   pivot_wider(names_from = TrialType, values_from = RT_mean)
 
+# compute correlation between even and odd trials
 cor.test(df_sum_wide$even, df_sum_wide$odd)
 
 ```
@@ -145,6 +162,7 @@ cor.test(df_sum_wide$even, df_sum_wide$odd)
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# scatterplot to show the relationship between response time in even and odd trials
 ggplot(df_sum_wide, aes(x = even, y = odd)) + 
   geom_point() +
   geom_smooth(method = "lm") + 
@@ -163,15 +181,17 @@ Read in files for Session 2, filter for correct responses only:
 test_2 <- read.csv("../data/Experiment1/Session2_ListA/results_5cbcc.csv")
 colclasses <- sapply(test_2, typeof)
 
+# create list of files for session 2 list A
 file_names_a_2 <- list.files(path = "../data/Experiment1/Session2_ListA/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# create list of files for session 2 list B
 file_names_b_2 <- list.files(path = "../data/Experiment1/Session2_ListB/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
-
+# use map function to iterate over files in list, read them in, and assign correct column class to all columns
 df_a_2 <- map_dfr(file_names_a_2, read.csv, colClasses = colclasses)
 df_b_2 <- map_dfr(file_names_b_2, read.csv, colClasses = colclasses)
 
@@ -191,6 +211,7 @@ df_2 <- df_2 %>%
 
 ```{r, tidy=TRUE, message=FALSE, comment="", cache=TRUE, results='hide'}
 
+# fit Bayesian regression model as before
 fit_e1_s2_split <- brm(RT ~ 0 + TrialType + (0 + TrialType|Participant_ID) + (1|Target),
               family = lognormal(),
               prior = c(
@@ -244,14 +265,16 @@ Just in case we didn't have enough data to estimate the random effect correlatio
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# create data frame with mean response time for each participant in each condition
 df_sum_2 <- df_2 %>%
   group_by(Participant_ID, TrialType) %>%
   summarize(RT_mean = mean(RT))
 
-
+# reshape data frame into wide format
 df_sum_wide_2 <- df_sum_2 %>% 
   pivot_wider(names_from = TrialType, values_from = RT_mean)
 
+# compute correlation between even and odd trials
 cor.test(df_sum_wide_2$even, df_sum_wide_2$odd)
 
 ```
@@ -260,6 +283,7 @@ cor.test(df_sum_wide_2$even, df_sum_wide_2$odd)
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# scatterplot to show relationship between response time in even and odd trials
 ggplot(df_sum_wide_2, aes(x = even, y = odd)) + 
   geom_point() +
   geom_smooth(method = "lm") + 
@@ -271,8 +295,10 @@ ggplot(df_sum_wide_2, aes(x = even, y = odd)) +
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# combine data frames from each session into one big data frame
 df_all <- rbind(df, df_2)
 
+# convert the variable session to a factor
 df_all$Session <- as.factor(as.character(df_all$Session))
 
 ```
@@ -282,6 +308,7 @@ df_all$Session <- as.factor(as.character(df_all$Session))
 
 ```{r, tidy=TRUE, message=FALSE, comment="", cache=TRUE, results='hide'}
 
+# fit Bayesian regression model as before, except with session as fixed effect (still estimating an intercept for each session rather than an intercept and slope for session)
 fit_e1_t_rt <- brm(RT ~ 0 + Session + (0 + Session|Participant_ID) + (1|Target),
               family = lognormal(),
               prior = c(
@@ -334,14 +361,16 @@ Just in case we didn't have enough data to estimate the random effect correlatio
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# create a data frame with mean response time per participant and session
 df_sum_3 <- df_all %>%
   group_by(Participant_ID, Session) %>%
   summarize(RT_mean = mean(RT))
 
-
+# reshape data frame into wide format
 df_sum_wide_3 <- df_sum_3 %>% 
   pivot_wider(names_from = Session, values_from = RT_mean)
 
+# compute correlation of response time betweeen the two sessions
 cor.test(df_sum_wide_3$`1`, df_sum_wide_3$`2`)
 
 ```
@@ -350,6 +379,7 @@ cor.test(df_sum_wide_3$`1`, df_sum_wide_3$`2`)
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# scatterplot to show relationship between response time in the two sessions
 ggplot(df_sum_wide_3, aes(x = `1`, y = `2`)) + 
   geom_point() +
   geom_smooth(method = "lm") + 
@@ -363,21 +393,28 @@ We decided to eliminate participants who did name at least 60% of the pictures c
 
 ```{r, tidy=TRUE, message=FALSE, comment=""}
 
+# create a data frame with the number of correct trials (here this is the same as the number of rows in the data frame for that participant at a particular session because we already filtered for correct responses)
 acc <- df_all %>%
   group_by(Participant_ID, Session) %>%
   summarize(n = n()) 
   
+# we computed each participant's proportion accuracy at each session to see if we need to eliminate them 
+# we take the number of rows, n, and divide by 150 (the number of total trials in the experiment)
 acc <- acc %>%
   mutate(acc = n/150)
 
+# compute the mean accuracy for each session
 acc %>%
   group_by(Session) %>%
   summarize(mean_acc = round(mean(acc),2))
 
+# compute the standard deviation of accuracy for each session
 acc %>%
   group_by(Session) %>%
   summarize(sd_acc = round(sd(acc),2))
 
+# count the number of participants in each session that got less than 60% accuracy
+# if there are any, we eliminate them from the analyses
 acc %>%
   group_by(Session) %>%
     summarize(count = sum(acc < .6))
@@ -399,22 +436,27 @@ Read in files for the non-speeded condition filter for correct responses only an
 test_3 <- read.csv("../data/Experiment2/Exp2_Session1_ListA_NS/results_5bbbc.csv")
 colclasses <- sapply(test_3, typeof)
 
+# make a list of files for session 1 list a non-speeded
 file_names_1_a_ns <- list.files(path = "../data/Experiment2/Exp2_Session1_ListA_NS/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# make a list of files for session 2 list a non-speeded
 file_names_2_a_ns <- list.files(path = "../data/Experiment2/Exp2_Session2_ListA_NS/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# make a list of files for session 1 list b non-speeded
 file_names_1_b_ns <- list.files(path = "../data/Experiment2/Exp2_Session1_ListB_NS/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# make a list of files for session 2 list b non-speeded
 file_names_2_b_ns <- list.files(path = "../data/Experiment2/Exp2_Session2_ListB_NS/", 
                          pattern = "*.csv", 
                          full.names = TRUE)
 
+# use map function to iterate over lists of files to read them in and assign correct classes for the columns
 df_1ans <- map_dfr(file_names_1_a_ns, read.csv, colClasses = colclasses)
 df_2ans <- map_dfr(file_names_2_a_ns, read.csv, colClasses = colclasses)
 df_1bns <- map_dfr(file_names_1_b_ns, read.csv, colClasses = colclasses)
